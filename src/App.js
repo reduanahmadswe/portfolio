@@ -10,7 +10,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-primary min-h-screen text-text font-sans bg-[url('https://grainy-gradients.vercel.app/noise.svg')]">
+   <div className="bg-primary min-h-screen text-text font-sans bg-gradient-to-br from-primary via-[#1E293B] to-[#020617] bg-[length:200%_200%] animate-gradient">
       {/* nav bar */}
       <nav className="sticky top-0 z-50 bg-primary bg-opacity-80 backdrop-blur border-b border-neutral shadow-sm">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">
