@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,9 +33,16 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking a link
-  const handleNavClick = () => {
-    if (isOpen) setIsOpen(false);
+  // Smooth scroll to section
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
+    setIsOpen(false);
   };
 
   const navItems = [
@@ -57,12 +64,16 @@ const Nav = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo/Brand */}
+          {/* Logo */}
           <motion.a 
             href="#"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('about');
+            }}
             className="text-2xl font-bold text-secondary tracking-tight"
           >
             Reduan Ahmad
@@ -71,9 +82,9 @@ const Nav = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
-              <motion.a
+              <motion.button
                 key={item.id}
-                href={`#${item.id}`}
+                onClick={() => scrollToSection(item.id)}
                 className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   activeSection === item.id 
                     ? 'text-secondary' 
@@ -90,7 +101,7 @@ const Nav = () => {
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   />
                 )}
-              </motion.a>
+              </motion.button>
             ))}
           </div>
 
@@ -119,11 +130,10 @@ const Nav = () => {
           >
             <div className="px-4 pb-4 space-y-2">
               {navItems.map((item) => (
-                <motion.a
+                <motion.button
                   key={item.id}
-                  href={`#${item.id}`}
-                  onClick={handleNavClick}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                  onClick={() => scrollToSection(item.id)}
+                  className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                     activeSection === item.id
                       ? 'bg-secondary/10 text-secondary'
                       : 'text-text hover:bg-neutral/5'
@@ -133,7 +143,7 @@ const Nav = () => {
                   transition={{ duration: 0.2 }}
                 >
                   {item.label}
-                </motion.a>
+                </motion.button>
               ))}
             </div>
           </motion.div>
