@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FaDownload } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
-import Experience from './Experience';
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +75,7 @@ const Navbar = () => {
           <div className="flex items-center">
             {/* Logo */}
             <button
-              onClick={() => scrollToSection("about")}
+              onClick={() => scrollToSection("hero")}
               className="text-2xl font-bold cursor-pointer"
             >
               <span className="text-blue-500">Reduan</span>

@@ -17,7 +17,7 @@ export default function Education() {
               <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">
                 Education & Credentials
               </span>
-              <span className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-secondary/30 to-accent/30 rounded-full"></span>
+              
             </span>
           </h2>
 
