@@ -1,13 +1,17 @@
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [scrolled, setScrolled] = useState(false);
 
+  // Scrollspy effect to highlight active section
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+      
       const sections = ['about', 'skills', 'projects', 'education', 'experience', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
@@ -29,70 +33,112 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  // Close mobile menu when clicking a link
+  const handleNavClick = () => {
+    if (isOpen) setIsOpen(false);
+  };
+
+  const navItems = [
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'education', label: 'Education' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'contact', label: 'Contact' }
+  ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-primary bg-opacity-80 backdrop-blur border-b border-neutral shadow-sm">
-      <div className="container mx-auto flex justify-between items-center py-4 px-6">
-        <motion.span
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-2xl font-bold tracking-tight text-secondary"
-        >
-          Reduan Ahmad
-        </motion.span>
+    <nav 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-primary/90 backdrop-blur-md shadow-lg border-b border-neutral/10' 
+          : 'bg-primary/80 backdrop-blur-sm'
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo/Brand */}
+          <motion.a 
+            href="#"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold text-secondary tracking-tight"
+          >
+            Reduan Ahmad
+          </motion.a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-6">
-          {['about', 'skills', 'projects', 'education', 'experience', 'contact'].map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              className={`link-underline transition px-2 py-1 ${
-                activeSection === section ? 'text-secondary font-medium' : 'hover:text-secondary'
-              }`}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
-          ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item) => (
+              <motion.a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  activeSection === item.id 
+                    ? 'text-secondary' 
+                    : 'text-text hover:text-secondary'
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <motion.span 
+                    layoutId="navActiveIndicator"
+                    className="absolute bottom-1 left-1/2 w-4 h-0.5 bg-secondary rounded-full -translate-x-1/2"
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  />
+                )}
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Mobile menu button */}
+          <motion.button
+            className="md:hidden p-2 rounded-md text-text hover:text-secondary focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </motion.button>
         </div>
-
-        {/* Mobile menu button */}
-        <button
-          className="md:hidden text-secondary focus:outline-none"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
       </div>
 
       {/* Mobile Navigation */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-primary bg-opacity-95 backdrop-blur-lg pb-4 px-6"
-        >
-          <div className="flex flex-col space-y-3">
-            {['about', 'skills', 'projects', 'education', 'experience', 'contact'].map((section) => (
-              <a
-                key={section}
-                href={`#${section}`}
-                onClick={() => setIsOpen(false)}
-                className={`py-2 px-3 rounded transition ${
-                  activeSection === section
-                    ? 'bg-secondary bg-opacity-10 text-secondary font-medium'
-                    : 'hover:bg-secondary hover:bg-opacity-5'
-                }`}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </a>
-            ))}
-          </div>
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden overflow-hidden"
+          >
+            <div className="px-4 pb-4 space-y-2">
+              {navItems.map((item) => (
+                <motion.a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={handleNavClick}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                    activeSection === item.id
+                      ? 'bg-secondary/10 text-secondary'
+                      : 'text-text hover:bg-neutral/5'
+                  }`}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };

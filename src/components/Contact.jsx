@@ -132,7 +132,7 @@ export default function Contact() {
                         type="text"
                         id="name"
                         placeholder="Reduan Ahmad"
-                        className="w-full px-4 py-3 bg-neutral-800/50 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-neutral-500 transition-all"
+                        className="w-full px-4 py-3 bg-neutral-800/50 border border-neutral-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent text-black placeholder-neutral-500 transition-all"
                         required
                       />
                       <div className="absolute inset-0 rounded-lg border border-secondary opacity-0 pointer-events-none group-hover:opacity-30 transition-opacity"></div>
