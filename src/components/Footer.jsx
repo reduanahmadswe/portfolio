@@ -4,10 +4,9 @@ import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaArrowUp, FaHeart } from 
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <FaGithub />, url: "https://github.com/yourusername", color: "hover:text-gray-800" },
-    { icon: <FaLinkedin />, url: "https://linkedin.com/in/yourusername", color: "hover:text-blue-600" },
-    { icon: <FaTwitter />, url: "https://twitter.com/yourusername", color: "hover:text-blue-400" },
-    { icon: <FaEnvelope />, url: "mailto:your.email@example.com", color: "hover:text-red-500" }
+    { icon: <FaGithub />, url: "https://github.com/reduanahmadswe", color: "hover:text-gray-800" },
+    { icon: <FaLinkedin />, url: "https://linkedin.com/in/reduanahmadswe/", color: "hover:text-blue-600" },
+    { icon: <FaTwitter />, url: "https://twitter.com/reduanahmadswe", color: "hover:text-blue-400" },
   ];
 
   return (

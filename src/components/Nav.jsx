@@ -3,7 +3,6 @@ import { FaDownload } from "react-icons/fa";
 import { FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -57,7 +56,6 @@ const Navbar = () => {
     { id: "projects", label: "Projects" },
     { id: "experience", label: "Experience" },
     { id: "education", label: "Education" },
-    
     { id: "contact", label: "Contact" },
   ];
 
@@ -65,31 +63,35 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-base-100/90 backdrop-blur-md shadow-lg border-b border-neutral/10"
-          : "bg-base-100/80 backdrop-blur-sm"
+          ? "bg-base-100/95 backdrop-blur-lg shadow-lg border-b border-neutral/10"
+          : "bg-base-100/90 backdrop-blur-md"
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Navbar Start - Logo and Mobile Menu Button */}
           <div className="flex items-center">
             {/* Logo */}
-            <button
+            <motion.button
               onClick={() => scrollToSection("hero")}
               className="text-2xl font-bold cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span className="text-blue-500">Reduan</span>
-              <span>Ahmad</span>
-            </button>
+              <span className="text-blue-500 hover:text-blue-600 transition-colors">Reduan</span>
+              <span className="text-neutral-800 dark:text-neutral-200 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors">Ahmad</span>
+            </motion.button>
 
             {/* Mobile Menu Button */}
-            <button
+            <motion.button
               className="lg:hidden ml-4 p-2 rounded-md focus:outline-none"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
+            </motion.button>
           </div>
 
           {/* Navbar Center - Desktop Navigation */}
@@ -97,13 +99,15 @@ const Navbar = () => {
             <ul className="flex space-x-1">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <button
+                  <motion.button
                     onClick={() => scrollToSection(item.id)}
                     className={`font-bold text-lg px-4 py-2 rounded-lg transition-colors ${
                       activeSection === item.id
                         ? "text-blue-500"
                         : "text-base-content hover:text-blue-500"
                     }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {item.label}
                     {activeSection === item.id && (
@@ -119,23 +123,27 @@ const Navbar = () => {
                         }}
                       />
                     )}
-                  </button>
+                  </motion.button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Navbar End - Resume Button */}
-          <div className="flex items-center">
+          {/* Resume Button - Desktop */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden lg:block"
+          >
             <a
               href="/resume.pdf"
               download
-              className="btn btn-primary ml-3 flex items-center gap-2"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg"
             >
-              <FaDownload />
-              <span>Resume</span>
+              <FaDownload className="text-sm" />
+              <span className="text-sm font-medium">Resume</span>
             </a>
-          </div>
+          </motion.div>
         </div>
 
         {/* Mobile Navigation Menu */}
@@ -146,9 +154,9 @@ const Navbar = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden"
+              className="lg:hidden overflow-hidden bg-base-100/95 backdrop-blur-lg"
             >
-              <ul className="px-4 pb-4 space-y-2">
+              <ul className="px-4 py-3 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.id}
@@ -163,7 +171,7 @@ const Navbar = () => {
                       onClick={() => scrollToSection(item.id)}
                       className={`block w-full text-left px-4 py-3 rounded-lg transition-colors ${
                         activeSection === item.id
-                          ? "bg-primary/10 text-primary"
+                          ? "bg-blue-500/10 text-blue-500"
                           : "text-base-content hover:bg-neutral/5"
                       }`}
                     >
@@ -171,6 +179,20 @@ const Navbar = () => {
                     </button>
                   </motion.li>
                 ))}
+                <motion.li
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: navItems.length * 0.1, duration: 0.2 }}
+                >
+                  <a
+                    href="/resume.pdf"
+                    download
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                  >
+                    <FaDownload />
+                    <span>Download Resume</span>
+                  </a>
+                </motion.li>
               </ul>
             </motion.div>
           )}
