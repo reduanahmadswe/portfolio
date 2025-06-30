@@ -32,30 +32,30 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-[#1E293B]/5 to-[#020617]/5"
+      className="relative py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-[#1E293B]/5 to-[#020617]/5"
     >
-      <div className="max-w-7xl mx-auto flex flex-col justify-center min-h-[80vh]"> {/* Changed this line */}
+      <div className="max-w-7xl mx-auto flex flex-col justify-center min-h-[80vh]">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-secondary mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-secondary mb-4">
             About Me
           </h2>
         </motion.div>
 
         {/* Content Container */}
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Image/Visual Section */}
           <motion.div
             whileHover={{ y: -10 }}
-            className="relative lg:w-1/3 flex justify-center"
+            className="relative w-full lg:w-1/3 flex justify-center mb-8 lg:mb-0"
           >
-            <div className="relative w-64 h-64 rounded-2xl overflow-hidden group">
+            <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-2xl overflow-hidden group">
               <img
                 src="https://media.licdn.com/dms/image/v2/D5603AQHteH2xSxx_Ew/profile-displayphoto-shrink_400_400/B56ZPgEeigH0As-/0/1734631090780?e=1756339200&v=beta&t=oOmGlKkzS3ZElzPqhuAd1DiduX9GhwbxDGmfP1nPizY"
                 alt="Profile"
@@ -72,29 +72,29 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 w-full"
           >
             {/* Tagline */}
-            <h3 className="text-2xl md:text-3xl font-semibold text-secondary mb-6">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-secondary mb-4 sm:mb-6">
               Software Engineering student passionate about building efficient
               and impactful digital experiences.
             </h3>
 
             {/* Main Text */}
-            <div className="prose prose-invert max-w-none text-text/90 space-y-4">
-              <p>
+            <div className="prose prose-invert max-w-none text-text/90 space-y-3 sm:space-y-4">
+              <p className="text-sm sm:text-base">
                 I'm a curious and driven Software Engineering student who loves
                 turning ideas into functional, well-crafted applications. From
                 the moment I built my first simple app, I became fascinated by
                 the creative power of technology.
               </p>
-              <p>
+              <p className="text-sm sm:text-base">
                 My interests lie at the intersection of development, design, and
                 problem-solving. I enjoy working with modern web technologies,
                 exploring full-stack development, and continually improving my
                 coding practices to write clean, scalable code.
               </p>
-              <p>
+              <p className="text-sm sm:text-base">
                 Outside of coursework, I actively engage in self-driven
                 projects, contribute to open-source, and stay updated with the
                 latest tools, frameworks, and tech trends. Whether it's
@@ -109,23 +109,23 @@ const About = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4"
+              className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4"
             >
-              <div className="bg-primary/20 backdrop-blur-sm p-4 rounded-xl border border-neutral/10 flex items-center space-x-3">
-                <FiAward className="text-secondary text-xl" />
-                <span className="font-medium">5+ Projects</span>
+              <div className="bg-primary/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-neutral/10 flex items-center space-x-2 sm:space-x-3">
+                <FiAward className="text-secondary text-lg sm:text-xl" />
+                <span className="font-medium text-sm sm:text-base">5+ Projects</span>
               </div>
-              <div className="bg-primary/20 backdrop-blur-sm p-4 rounded-xl border border-neutral/10 flex items-center space-x-3">
-                <FiCode className="text-secondary text-xl" />
-                <span className="font-medium">Full Stack</span>
+              <div className="bg-primary/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-neutral/10 flex items-center space-x-2 sm:space-x-3">
+                <FiCode className="text-secondary text-lg sm:text-xl" />
+                <span className="font-medium text-sm sm:text-base">Full Stack</span>
               </div>
-              <div className="bg-primary/20 backdrop-blur-sm p-4 rounded-xl border border-neutral/10 flex items-center space-x-3">
-                <FiUser className="text-secondary text-xl" />
-                <span className="font-medium">Open Source</span>
+              <div className="bg-primary/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-neutral/10 flex items-center space-x-2 sm:space-x-3">
+                <FiUser className="text-secondary text-lg sm:text-xl" />
+                <span className="font-medium text-sm sm:text-base">Open Source</span>
               </div>
-              <div className="bg-primary/20 backdrop-blur-sm p-4 rounded-xl border border-neutral/10 flex items-center space-x-3">
-                <FiMail className="text-secondary text-xl" />
-                <span className="font-medium">Available</span>
+              <div className="bg-primary/20 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-neutral/10 flex items-center space-x-2 sm:space-x-3">
+                <FiMail className="text-secondary text-lg sm:text-xl" />
+                <span className="font-medium text-sm sm:text-base">Available</span>
               </div>
             </motion.div>
           </motion.div>
