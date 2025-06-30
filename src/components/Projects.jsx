@@ -51,8 +51,6 @@ const projects = [
   },
 ];
 
-
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -66,15 +64,15 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 50 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
       type: "spring",
       stiffness: 100,
       damping: 15,
-      duration: 0.5
-    } 
+      duration: 0.5,
+    },
   },
 };
 
@@ -82,13 +80,14 @@ const hoverCard = {
   hover: {
     y: -8,
     scale: 1.03,
-    boxShadow: "0 20px 25px -5px rgba(124, 58, 237, 0.2), 0 10px 10px -5px rgba(124, 58, 237, 0.1)",
+    boxShadow:
+      "0 20px 25px -5px rgba(59, 130, 246, 0.3), 0 10px 10px -5px rgba(250, 204, 21, 0.2)",
     transition: {
       type: "spring",
       stiffness: 300,
       damping: 15,
     },
-  }
+  },
 };
 
 const hoverButton = {
@@ -99,19 +98,22 @@ const hoverButton = {
     transition: {
       type: "spring",
       stiffness: 400,
-      damping: 10
-    }
+      damping: 10,
+    },
   },
   tap: {
-    scale: 0.95
-  }
+    scale: 0.95,
+  },
 };
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      id="projects"
+      className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
       {/* Background elements */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.2 }}
         transition={{ duration: 1 }}
@@ -130,9 +132,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-
-          
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -142,7 +142,6 @@ export default function Projects() {
               <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">
                 Featured Projects
               </span>
-              
             </span>
           </motion.h2>
           <motion.p
@@ -151,7 +150,8 @@ export default function Projects() {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            Here are some of my most recent and noteworthy projects. Each one represents unique challenges and solutions.
+            Here are some of my most recent and noteworthy projects. Each one
+            represents unique challenges and solutions.
           </motion.p>
         </motion.div>
 
@@ -171,7 +171,7 @@ export default function Projects() {
               className="flex flex-col h-full rounded-xl overflow-hidden shadow-lg border border-neutral-800 hover:border-secondary/50 transition-all duration-300 bg-gradient-to-b from-primary/90 to-primary group"
             >
               {/* Image container with enhanced hover */}
-              <motion.div 
+              <motion.div
                 className="relative aspect-video overflow-hidden"
                 whileHover={{ scale: 1.02 }}
               >
@@ -187,21 +187,21 @@ export default function Projects() {
               </motion.div>
 
               {/* Content with enhanced animations */}
-              <motion.div 
+              <motion.div
                 className="flex flex-col flex-grow p-6"
                 initial={{ backgroundColor: "hsl(var(--b1))" }}
                 whileHover={{ backgroundColor: "hsl(var(--b2))" }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.h3 
+                <motion.h3
                   className="text-xl font-bold mb-3 text-secondary"
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {project.title}
                 </motion.h3>
-                
-                <motion.p 
+
+                <motion.p
                   className="text-neutral-300 mb-4 flex-grow"
                   whileHover={{ x: 5 }}
                   transition={{ delay: 0.1, type: "spring", stiffness: 300 }}
@@ -210,7 +210,7 @@ export default function Projects() {
                 </motion.p>
 
                 {/* Tech badges with pop effect */}
-                <motion.div 
+                <motion.div
                   className="flex flex-wrap gap-2 mb-6"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -220,11 +220,13 @@ export default function Projects() {
                   {project.tech.map((tech) => (
                     <motion.span
                       key={tech}
-                      className="px-2.5 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-medium"
-                      whileHover={{ 
+                      className="px-2.5 py-1 bg-blue-500/10 text-blue-500 rounded-full text-xs font-medium"
+                      whileHover={{
                         scale: 1.1,
-                        boxShadow: "0 4px 6px -1px rgba(124, 58, 237, 0.5), 0 2px 4px -1px rgba(124, 58, 237, 0.3)",
-                        transition: { type: "spring", stiffness: 400 }
+                        backgroundColor: "#FACC15",
+                        color: "#1E293B",
+                        boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.5)",
+                        transition: { type: "spring", stiffness: 400 },
                       }}
                     >
                       {tech}
@@ -233,22 +235,23 @@ export default function Projects() {
                 </motion.div>
 
                 {/* Action buttons with enhanced interactions */}
-                <motion.div 
+                <motion.div
                   className="flex gap-4 pt-4 mt-auto border-t border-neutral-800"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: index * 0.1 + 0.6 }}
                   viewport={{ once: true }}
                 >
+                  
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm font-medium text-secondary hover:text-accent"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.1,
                       y: -3,
-                      transition: { type: "spring", stiffness: 500 }
+                      transition: { type: "spring", stiffness: 500 },
                     }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -262,15 +265,16 @@ export default function Projects() {
                     </svg>
                     Source Code
                   </motion.a>
+
                   <motion.a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm font-medium text-secondary hover:text-accent"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.1,
                       y: -3,
-                      transition: { type: "spring", stiffness: 500 }
+                      transition: { type: "spring", stiffness: 500 },
                     }}
                     whileTap={{ scale: 0.9 }}
                   >
@@ -308,15 +312,15 @@ export default function Projects() {
             variants={hoverButton}
             whileHover="hover"
             whileTap="tap"
-            onClick={() => window.location.href = "/projects"}
+            onClick={() => (window.location.href = "/projects")}
             className="inline-flex items-center px-8 py-3.5 border-2 border-secondary text-secondary rounded-full font-medium relative overflow-hidden group"
           >
             <span className="relative z-10">View All Projects</span>
-            <motion.svg 
-              xmlns="http://www.w3.org/2000/svg" 
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 ml-2 relative z-10"
-              fill="none" 
-              viewBox="0 0 24 24" 
+              fill="none"
+              viewBox="0 0 24 24"
               stroke="currentColor"
               initial={{ x: 0 }}
               whileHover={{ x: 5 }}
@@ -329,7 +333,7 @@ export default function Projects() {
                 d="M14 5l7 7m0 0l-7 7m7-7H3"
               />
             </motion.svg>
-            <motion.span 
+            <motion.span
               className="absolute inset-0 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
               initial={{ opacity: 0 }}
               whileHover={{ opacity: 0.1 }}

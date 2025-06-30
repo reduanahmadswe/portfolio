@@ -1,6 +1,56 @@
 import { motion } from 'framer-motion';
 
 export default function Education() {
+  // Hover variants for cards
+  const cardHover = {
+    hover: {
+      y: -5,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 10
+      }
+    }
+  };
+
+  // Hover variants for course items
+  const courseHover = {
+    hover: {
+      scale: 1.05,
+      backgroundColor: "rgba(59, 130, 246, 0.2)",
+      transition: {
+        type: "spring",
+        stiffness: 400
+      }
+    }
+  };
+
+  // Hover variants for certification items
+  const certHover = {
+    hover: {
+      x: 5,
+      borderLeftWidth: "4px",
+      transition: {
+        type: "spring",
+        stiffness: 300
+      }
+    }
+  };
+
+  // Tech badge hover effect
+  const techHover = {
+    hover: {
+      scale: 1.1,
+      backgroundColor: "#FACC15",
+      color: "#1E293B",
+      boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.5)",
+      transition: { 
+        type: "spring", 
+        stiffness: 400 
+      }
+    }
+  };
+
   return (
     <section id="education" className="relative py-28 px-4 overflow-hidden">
       <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-secondary to-accent blur-3xl opacity-10"></div>
@@ -13,103 +63,176 @@ export default function Education() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
-            <span className="relative inline-block">
+            <motion.span 
+              className="relative inline-block"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
               <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent">
                 Education & Credentials
               </span>
-              
-            </span>
+            </motion.span>
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-br from-secondary to-accent rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-              <div className="relative bg-gradient-to-br from-primary/90 to-primary/80 backdrop-blur-sm border border-neutral-800 rounded-3xl p-8 h-full">
+            {/* Education Card */}
+            <motion.div 
+              className="relative group"
+              variants={cardHover}
+              whileHover="hover"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-br from-secondary to-accent rounded-3xl blur opacity-20 group-hover:opacity-40 transition-all duration-300"></div>
+              <div className="relative bg-gradient-to-br from-primary/90 to-primary/80 backdrop-blur-sm border border-neutral-800 hover:border-secondary/50 rounded-3xl p-8 h-full transition-all duration-300">
                 <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <motion.div 
+                    className="flex-shrink-0"
+                    whileHover={{ rotate: 5 }}
+                  >
+                    <div className="w-16 h-16 rounded-xl bg-secondary/10 hover:bg-secondary/20 flex items-center justify-center transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M12 14l9-5-9-5-9 5 9 5z" />
                         <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                       </svg>
                     </div>
-                  </div>
+                  </motion.div>
                   <div>
-                    <h3 className="text-2xl font-bold text-secondary mb-2">B.Sc. in Software Engineering</h3>
-                    <p className="text-lg font-medium mb-3">Daffodil International University</p>
+                    <motion.h3 
+                      className="text-2xl font-bold text-secondary mb-2 hover:text-accent transition-colors"
+                      whileHover={{ x: 3 }}
+                    >
+                      B.Sc. in Software Engineering
+                    </motion.h3>
+                    <p className="text-lg font-medium mb-3 hover:text-secondary transition-colors">Daffodil International University</p>
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">2023 - Present</span>
-                      <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">GPA: 3.8/4.0</span>
+                      <motion.span 
+                        className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium"
+                        whileHover={techHover.hover}
+                      >
+                        2023 - Present
+                      </motion.span>
+                      <motion.span 
+                        className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium"
+                        whileHover={techHover.hover}
+                      >
+                        GPA: 3.8/4.0
+                      </motion.span>
                     </div>
 
-                    <h4 className="font-semibold text-secondary mb-3">Key Coursework:</h4>
+                    <h4 className="font-semibold text-secondary mb-3 hover:text-accent transition-colors">Key Coursework:</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Data Structures', 'Algorithms', 'Database Systems', 'Software Architecture',
                         'Machine Learning', 'Web Development', 'Cloud Computing', 'AI Fundamentals'].map((course) => (
-                          <span key={course} className="px-3 py-1 bg-neutral-800 rounded-full text-sm">
+                          <motion.span 
+                            key={course} 
+                            className="px-3 py-1 bg-neutral-800 rounded-full text-sm"
+                            whileHover={techHover.hover}
+                          >
                             {course}
-                          </span>
+                          </motion.span>
                         ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-br from-secondary to-accent rounded-3xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-              <div className="relative bg-gradient-to-br from-primary/90 to-primary/80 backdrop-blur-sm border border-neutral-800 rounded-3xl p-8 h-full">
+            {/* Certifications Card */}
+            <motion.div 
+              className="relative group"
+              variants={cardHover}
+              whileHover="hover"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-br from-secondary to-accent rounded-3xl blur opacity-20 group-hover:opacity-40 transition-all duration-300"></div>
+              <div className="relative bg-gradient-to-br from-primary/90 to-primary/80 backdrop-blur-sm border border-neutral-800 hover:border-secondary/50 rounded-3xl p-8 h-full transition-all duration-300">
                 <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 rounded-xl bg-secondary/10 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <motion.div 
+                    className="flex-shrink-0"
+                    whileHover={{ rotate: 5 }}
+                  >
+                    <div className="w-16 h-16 rounded-xl bg-secondary/10 hover:bg-secondary/20 flex items-center justify-center transition-colors duration-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-secondary hover:text-accent transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                       </svg>
                     </div>
-                  </div>
+                  </motion.div>
                   <div>
-                    <h3 className="text-2xl font-bold text-secondary mb-4">Certifications</h3>
+                    <motion.h3 
+                      className="text-2xl font-bold text-secondary mb-4 hover:text-accent transition-colors"
+                      whileHover={{ x: 3 }}
+                    >
+                      Certifications
+                    </motion.h3>
 
                     <div className="space-y-5">
-                      <div className="border-l-2 border-secondary pl-4">
-                        <h4 className="font-bold text-lg">Full Stack Web Development</h4>
-                        <p className="text-sm text-neutral-300">Coursera • 2023</p>
+                      <motion.div 
+                        className="border-l-2 border-secondary hover:border-accent pl-4 transition-all"
+                        variants={certHover}
+                        whileHover="hover"
+                      >
+                        <h4 className="font-bold text-lg hover:text-secondary transition-colors">Full Stack Web Development</h4>
+                        <p className="text-sm text-neutral-300 hover:text-secondary transition-colors">Coursera • 2023</p>
                         <div className="mt-2 flex gap-2">
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">React</span>
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">Node.js</span>
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">MongoDB</span>
+                          {['React', 'Node.js', 'MongoDB'].map((tech) => (
+                            <motion.span 
+                              key={tech}
+                              className="px-2 py-1 bg-neutral-800 rounded-full text-xs"
+                              whileHover={techHover.hover}
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
                         </div>
-                      </div>
+                      </motion.div>
 
-                      <div className="border-l-2 border-secondary pl-4">
-                        <h4 className="font-bold text-lg">AWS Cloud Practitioner</h4>
-                        <p className="text-sm text-neutral-300">Amazon Web Services • 2024</p>
+                      <motion.div 
+                        className="border-l-2 border-secondary hover:border-accent pl-4 transition-all"
+                        variants={certHover}
+                        whileHover="hover"
+                      >
+                        <h4 className="font-bold text-lg hover:text-secondary transition-colors">AWS Cloud Practitioner</h4>
+                        <p className="text-sm text-neutral-300 hover:text-secondary transition-colors">Amazon Web Services • 2024</p>
                         <div className="mt-2 flex gap-2">
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">AWS</span>
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">Cloud</span>
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">DevOps</span>
+                          {['AWS', 'Cloud', 'DevOps'].map((tech) => (
+                            <motion.span 
+                              key={tech}
+                              className="px-2 py-1 bg-neutral-800 rounded-full text-xs"
+                              whileHover={techHover.hover}
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
                         </div>
-                      </div>
+                      </motion.div>
 
-                      <div className="border-l-2 border-secondary pl-4">
-                        <h4 className="font-bold text-lg">React Advanced Concepts</h4>
-                        <p className="text-sm text-neutral-300">Frontend Masters • 2023</p>
+                      <motion.div 
+                        className="border-l-2 border-secondary hover:border-accent pl-4 transition-all"
+                        variants={certHover}
+                        whileHover="hover"
+                      >
+                        <h4 className="font-bold text-lg hover:text-secondary transition-colors">React Advanced Concepts</h4>
+                        <p className="text-sm text-neutral-300 hover:text-secondary transition-colors">Frontend Masters • 2023</p>
                         <div className="mt-2 flex gap-2">
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">Hooks</span>
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">Performance</span>
-                          <span className="px-2 py-1 bg-neutral-800 rounded-full text-xs">Testing</span>
+                          {['Hooks', 'Performance', 'Testing'].map((tech) => (
+                            <motion.span 
+                              key={tech}
+                              className="px-2 py-1 bg-neutral-800 rounded-full text-xs"
+                              whileHover={techHover.hover}
+                            >
+                              {tech}
+                            </motion.span>
+                          ))}
                         </div>
-                      </div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-secondary/10 blur-xl opacity-50 -z-10"></div>
-          <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-accent/10 blur-xl opacity-50 -z-10"></div>
+          <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-secondary/10 blur-xl opacity-50 hover:opacity-70 transition-opacity duration-500 -z-10"></div>
+          <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-accent/10 blur-xl opacity-50 hover:opacity-70 transition-opacity duration-500 -z-10"></div>
         </motion.div>
       </div>
     </section>
