@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 export default function Education() {
   // Hover variants for cards
@@ -12,7 +13,6 @@ export default function Education() {
       }
     }
   };
-
 
   // Hover variants for certification items
   const certHover = {
@@ -40,16 +40,41 @@ export default function Education() {
     }
   };
 
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#education") {
+        const educationSection = document.getElementById("education");
+        if (educationSection) {
+          educationSection.scrollIntoView({ 
+            behavior: "smooth", 
+            block: "center" // Center the section in the viewport
+          });
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   return (
-    <section id="education" className="relative py-28 px-4 overflow-hidden">
+    <section 
+      id="education" 
+      className="relative min-h-screen py-28 px-4 overflow-hidden flex items-center justify-center"
+    >
       <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-64 h-64 rounded-full bg-gradient-to-br from-secondary to-accent blur-3xl opacity-10"></div>
 
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="w-full"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
             <motion.span 

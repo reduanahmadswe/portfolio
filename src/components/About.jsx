@@ -1,13 +1,40 @@
 import { motion } from "framer-motion";
 import { FiUser, FiAward, FiCode, FiMail } from "react-icons/fi";
+import { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#about") {
+        const aboutSection = document.getElementById("about");
+        if (aboutSection) {
+          // Calculate the position to center the section
+          const viewportHeight = window.innerHeight;
+          const sectionHeight = aboutSection.offsetHeight;
+          const scrollPosition = aboutSection.offsetTop - (viewportHeight - sectionHeight) / 2;
+          
+          window.scrollTo({
+            top: scrollPosition,
+            behavior: "smooth"
+          });
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
   return (
     <section
       id="about"
       className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary/5 via-[#1E293B]/5 to-[#020617]/5"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto flex flex-col justify-center min-h-[80vh]"> {/* Changed this line */}
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -16,15 +43,14 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-secondary mb-4">
             About Me
           </h2>
-          <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
         </motion.div>
 
         {/* Content Container */}
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Image/Visual Section with Rotating Border */}
+          {/* Image/Visual Section */}
           <motion.div
             whileHover={{ y: -10 }}
             className="relative lg:w-1/3 flex justify-center"

@@ -36,7 +36,7 @@ const projects = [
   {
     title: "Blockchain Explorer",
     desc: "Real-time blockchain data visualization tool with transaction history and wallet tracking.",
-    img: "https://images.unsplash.com/photo-1621413276213-40c9f4d1e8d7?auto=format&fit=crop&w=1170&q=80",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFgWPfY6VVHnxu9IlOWliu6DxqRII_fQnBw2Trb7HDlI6QTFftHT2jskMF51aLi0thys0&usqp=CAU",
     tech: ["Web3.js", "Ethers.js", "React", "Node.js", "Ethereum"],
     github: "#",
     live: "#",
