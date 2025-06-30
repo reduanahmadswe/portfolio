@@ -13,17 +13,6 @@ export default function Education() {
     }
   };
 
-  // Hover variants for course items
-  const courseHover = {
-    hover: {
-      scale: 1.05,
-      backgroundColor: "rgba(59, 130, 246, 0.2)",
-      transition: {
-        type: "spring",
-        stiffness: 400
-      }
-    }
-  };
 
   // Hover variants for certification items
   const certHover = {

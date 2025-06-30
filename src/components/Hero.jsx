@@ -71,7 +71,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="rounded-full bg-secondary hover:bg-secondary/90 text-primary px-8 py-3 font-semibold shadow-lg transition-all duration-300"
+            className="rounded-full bg-secondary hover:bg-accent text-primary px-8 py-3 font-semibold shadow-lg transition-all duration-300"
           >
             Contact Me
           </motion.a>
@@ -81,7 +81,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             href="/resume.pdf"
             download
-            className="rounded-full border-2 border-secondary hover:bg-secondary hover:text-primary px-8 py-3 font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+            className="rounded-full border-2 border-secondary hover:bg-accent hover:text-primary px-8 py-3 font-semibold shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
           >
             <FiDownload className="text-lg" />
             Resume

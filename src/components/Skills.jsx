@@ -66,6 +66,47 @@ const softSkills = [
   'Adaptability', 'Critical Thinking'
 ];
 
+// Hover variants for tech icons
+const techHover = {
+  hover: {
+    scale: 1.2,
+    y: -5,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 10
+    }
+  }
+};
+
+// Hover variants for soft skills
+const softSkillHover = {
+  hover: {
+    y: -5,
+    scale: 1.05,
+    backgroundColor: "#FACC15",
+    color: "#1E293B",
+    boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.5)",
+    transition: {
+      type: "spring",
+      stiffness: 400
+    }
+  }
+};
+
+// Hover variants for cards
+const cardHover = {
+  hover: {
+    y: -5,
+    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 10
+    }
+  }
+};
+
 export default function Skills() {
   return (
     <motion.section 
@@ -74,10 +115,21 @@ export default function Skills() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className="container mx-auto py-20 px-4"
+      className="container mx-auto py-20 px-4 sm:px-6 lg:px-8"
     >
+      <motion.div
+        className="absolute inset-0 -z-10 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute -top-96 left-1/2 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem]">
+          <div className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-br from-secondary to-accent opacity-30" 
+            style={{ clipPath: "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" }}
+          />
+        </div>
+      </motion.div>
+
       <motion.h2 
-        className="text-4xl font-bold mb-12 text-center"
+        className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -87,10 +139,14 @@ export default function Skills() {
         </span>
       </motion.h2>
 
-      <div className="glass-card rounded-3xl p-8 backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl shadow-primary/10">
+      <motion.div 
+        className="glass-card rounded-3xl p-6 sm:p-8 backdrop-blur-lg bg-white/10 border border-white/20 shadow-xl shadow-primary/10"
+        variants={cardHover}
+        whileHover="hover"
+      >
         <div className="overflow-x-auto pb-4">
           <motion.table 
-            className="w-full min-w-[800px] md:min-w-0"
+            className="w-full min-w-[600px] md:min-w-full"
             variants={container}
             initial="hidden"
             whileInView="show"
@@ -102,7 +158,8 @@ export default function Skills() {
                   <motion.th 
                     key={category.title}
                     variants={item}
-                    className="pb-6 text-xl font-semibold text-secondary"
+                    className="pb-4 sm:pb-6 text-lg sm:text-xl font-semibold text-secondary hover:text-accent transition-colors"
+                    whileHover={{ scale: 1.05 }}
                   >
                     {category.title}
                   </motion.th>
@@ -115,22 +172,23 @@ export default function Skills() {
                   <motion.td 
                     key={category.title}
                     variants={item}
-                    className={`p-4 border border-neutral/20 ${index === 0 ? 'rounded-l-lg' : ''} ${index === skillCategories.length - 1 ? 'rounded-r-lg' : ''}`}
+                    className={`p-3 sm:p-4 border border-neutral/20 ${index === 0 ? 'rounded-l-lg' : ''} ${index === skillCategories.length - 1 ? 'rounded-r-lg' : ''}`}
                   >
-                    <div className="flex justify-center flex-wrap gap-6">
+                    <div className="flex justify-center flex-wrap gap-4 sm:gap-6">
                       {category.skills.map((skill) => (
                         <motion.div 
                           key={skill.name}
-                          whileHover={{ scale: 1.2, y: -5 }}
+                          variants={techHover}
+                          whileHover="hover"
                           whileTap={{ scale: 0.9 }}
                           className="relative group"
                         >
                           <img 
                             src={`https://skillicons.dev/icons?i=${skill.icon}`} 
                             alt={skill.name} 
-                            className="h-12 w-12 transition-all duration-300" 
+                            className="h-10 w-10 sm:h-12 sm:w-12 transition-all duration-300" 
                           />
-                          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="absolute -bottom-7 sm:-bottom-8 left-1/2 transform -translate-x-1/2 bg-accent text-black text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
                             {skill.name}
                           </span>
                         </motion.div>
@@ -144,29 +202,30 @@ export default function Skills() {
         </div>
 
         <motion.div 
-          className="mt-12"
+          className="mt-8 sm:mt-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl font-semibold mb-6 text-center text-secondary">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-secondary">
             Soft Skills & Competencies
           </h3>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {softSkills.map((skill) => (
               <motion.div
                 key={skill}
-                whileHover={{ y: -5, scale: 1.05 }}
+                variants={softSkillHover}
+                whileHover="hover"
                 whileTap={{ scale: 0.95 }}
-                className="px-5 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium hover:bg-secondary hover:text-primary transition-all cursor-default shadow-sm"
+                className="px-3 py-1 sm:px-4 sm:py-2 bg-secondary/10 text-secondary rounded-full text-xs sm:text-sm font-medium cursor-default shadow-sm"
               >
                 {skill}
               </motion.div>
             ))}
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </motion.section>
   );
 }
