@@ -69,33 +69,19 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Navbar Start - Logo and Mobile Menu Button */}
-          <div className="flex items-center">
-            {/* Logo */}
-            <motion.button
-              onClick={() => scrollToSection("hero")}
-              className="text-2xl font-bold cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="text-blue-500 hover:text-blue-600 transition-colors">Reduan</span>
-              <span className="text-neutral-800 dark:text-neutral-200 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors">Ahmad</span>
-            </motion.button>
+          {/* Logo */}
+          <motion.button
+            onClick={() => scrollToSection("hero")}
+            className="text-2xl font-bold cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="text-blue-500 hover:text-blue-600 transition-colors">Reduan</span>
+            <span className="text-neutral-800 dark:text-neutral-200 hover:text-neutral-600 dark:hover:text-neutral-400 transition-colors">Ahmad</span>
+          </motion.button>
 
-            {/* Mobile Menu Button */}
-            <motion.button
-              className="lg:hidden ml-4 p-2 rounded-md focus:outline-none"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </motion.button>
-          </div>
-
-          {/* Navbar Center - Desktop Navigation */}
-          <div className="hidden lg:flex">
+          {/* Desktop Navigation and Resume Button - Right Side */}
+          <div className="hidden lg:flex items-center space-x-4">
             <ul className="flex space-x-1">
               {navItems.map((item) => (
                 <li key={item.id}>
@@ -127,23 +113,32 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <a
+                href="/resume.pdf"
+                download
+                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg"
+              >
+                <FaDownload className="text-sm" />
+                <span className="text-sm font-medium">Resume</span>
+              </a>
+            </motion.div>
           </div>
 
-          {/* Resume Button - Desktop */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden lg:block"
+          {/* Mobile Menu Button */}
+          <motion.button
+            className="lg:hidden ml-4 p-2 rounded-md focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <a
-              href="/resume.pdf"
-              download
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg"
-            >
-              <FaDownload className="text-sm" />
-              <span className="text-sm font-medium">Resume</span>
-            </a>
-          </motion.div>
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </motion.button>
         </div>
 
         {/* Mobile Navigation Menu */}
